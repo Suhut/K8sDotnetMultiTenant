@@ -66,6 +66,14 @@ sebuah solusi :
 https://stackoverflow.com/questions/70434928/nginx-controller-returns-404-not-found-on-path-and-default-backend
 
 
+kubectl proxy
+http://localhost:8001/api/v1/namespaces/kubernetes-dashboard/services/https:kubernetes-dashboard:/proxy/.
 
 
+kalo ingress tidak jalan :
+1. pastikan port yg sedang dipakai ingrees tidak dipakai
+2. pastika sudah install ingress controller
+kubectl apply -f https://raw.githubusercontent.com/kubernetes/ingress-nginx/controller-v1.3.1/deploy/static/provider/cloud/deploy.yaml
+https://kubernetes.github.io/ingress-nginx/deploy/
 
+kubectl delete all  --all -n myapp-account 
