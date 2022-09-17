@@ -27,6 +27,11 @@ spec:
       containers:
         - name: tenant-api
           image: suhutwadiyo/tenantapi:1.0
+          readinessProbe:
+            httpGet:
+              path: /WhatsUp
+              port: 80
+            successThreshold: 3
           ports:
             - containerPort: 80
 

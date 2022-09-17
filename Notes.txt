@@ -2,6 +2,8 @@
 https://andrewlock.net/running-kubernetes-and-the-dashboard-with-docker-desktop/
 https://stackoverflow.com/questions/68885798/kubernetes-dashboard-web-ui-has-nothing-to-display
 
+https://andrewlock.net/deploying-asp-net-core-applications-to-kubernetes-part-1-an-introduction-to-kubernetes/
+
 
 # Install Kubernetes Dashboard
 kubectl apply -f https://raw.githubusercontent.com/kubernetes/dashboard/v2.2.0/aio/deploy/recommended.yaml
