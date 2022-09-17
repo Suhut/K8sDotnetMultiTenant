@@ -57,7 +57,7 @@ kubectl logs account-api-58d9bf6d44-hrh7x  -n account
 
 kubectl exec account-api-58d9bf6d44-hrh7x -it bash -n account  
 
-kubectl exec nama-pod -it -- /bin/sh
+kubectl exec curl -it -- /bin/sh
 
 net stop http
 
