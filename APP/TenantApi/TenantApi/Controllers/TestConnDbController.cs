@@ -1,7 +1,7 @@
 using Microsoft.AspNetCore.Mvc;
 using System.Data.SqlClient;
 
-namespace AccountApi.Controllers
+namespace TenantApi.Controllers
 {
     [ApiController]
     [Route("[controller]")]

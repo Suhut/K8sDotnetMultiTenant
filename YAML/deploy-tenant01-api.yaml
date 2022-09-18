@@ -1,14 +1,51 @@
 apiVersion: v1
 kind: Namespace
 metadata:
-  name: myapp-tenant02
+  name: myapp-tenant01
+
+---   
+
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  namespace: myapp-tenant01
+  name: myapp-tenant01-config-app-name
+data:
+  APP_NAME: MY TENANT01 API
+
+---
+
+apiVersion: v1
+kind: Secret
+metadata:
+  namespace: myapp-tenant01
+  name: myapp-tenant01-secret-conn-string
+stringData:
+  CONN_STRING: Server=192.168.0.105\SQL2019;Database=KUBERNETES_MULTI_TENANT_DB_TENANT01;Persist Security Info=True;User ID=sa;Password=adminpass;MultipleActiveResultSets=true;Application Name=KUBERNETES_MULTI_TENANT_DB_TENANT01;
+
+---
+
+apiVersion: v1
+kind: Service
+metadata: 
+  namespace: myapp-tenant01
+  name: tenant-api-service
+  labels:
+    name: tenant-api
+spec:
+  type: ClusterIP
+  selector:
+    name: tenant-api
+  ports:
+    - port: 80
+      targetPort: 80 
 
 ---
 
 apiVersion: apps/v1
 kind: Deployment
 metadata: 
-  namespace: myapp-tenant02
+  namespace: myapp-tenant01
   name: tenant-api
   labels:
     name: tenant-api
@@ -19,7 +56,7 @@ spec:
       name: tenant-api
   template:
     metadata: 
-      namespace: myapp-tenant02
+      namespace: myapp-tenant01
       name: tenant-api
       labels:
         name: tenant-api
@@ -34,30 +71,18 @@ spec:
             successThreshold: 3
           ports:
             - containerPort: 80
-
----
-
-apiVersion: v1
-kind: Service
-metadata: 
-  namespace: myapp-tenant02
-  name: tenant-api-service
-  labels:
-    name: tenant-api
-spec:
-  type: ClusterIP
-  selector:
-    name: tenant-api
-  ports:
-    - port: 80
-      targetPort: 80 
+          envFrom: 
+            - configMapRef:
+                name: myapp-tenant01-config-app-name
+            - secretRef:
+                name: myapp-tenant01-secret-conn-string
 
 ---
 
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata: 
-  namespace: myapp-tenant02
+  namespace: myapp-tenant01
   name: nginx-ingress
   labels:
     name: nginx-ingress
@@ -70,7 +95,7 @@ spec:
       port:
         number: 80
   rules:
-    - host: api.tenant02.app.local
+    - host: api.tenant01.app.local
       http:
         paths:
           - path: /
