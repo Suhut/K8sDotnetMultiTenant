@@ -21,7 +21,7 @@ metadata:
   namespace: myapp-account
   name: myapp-account-secret-conn-string
 stringData:
-  CONN_STRING: Server=192.168.0.105\SQL2019;Database=KUBERNETES_MULTI_TENANT_DB_ACCOUNT;Persist Security Info=True;User ID=sa;Password=adminpass;MultipleActiveResultSets=true;Application Name=KUBERNETES_MULTI_TENANT_DB_ACCOUNT;
+  CONN_STRING: Server=192.168.0.111\SQL2019;Database=KUBERNETES_MULTI_TENANT_DB_ACCOUNT;Persist Security Info=True;User ID=sa;Password=adminpass;MultipleActiveResultSets=true;Application Name=KUBERNETES_MULTI_TENANT_DB_ACCOUNT;
 
 ---
 
@@ -49,7 +49,7 @@ metadata:
     name: myapp-account-sqlserver
 subsets:
   - addresses:
-      - ip: 172.25.128.1
+      - ip: 192.168.0.111
     ports:
       - port: 1433
 

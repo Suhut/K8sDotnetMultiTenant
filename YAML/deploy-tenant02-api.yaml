@@ -21,7 +21,7 @@ metadata:
   namespace: myapp-tenant02
   name: myapp-tenant02-secret-conn-string
 stringData:
-  CONN_STRING: Server=192.168.0.105\SQL2019;Database=KUBERNETES_MULTI_TENANT_DB_TENANT02;Persist Security Info=True;User ID=sa;Password=adminpass;MultipleActiveResultSets=true;Application Name=KUBERNETES_MULTI_TENANT_DB_TENANT02;
+  CONN_STRING: Server=192.168.0.111\SQL2019;Database=KUBERNETES_MULTI_TENANT_DB_TENANT02;Persist Security Info=True;User ID=sa;Password=adminpass;MultipleActiveResultSets=true;Application Name=KUBERNETES_MULTI_TENANT_DB_TENANT02;
 
 ---
 
